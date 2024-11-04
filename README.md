@@ -103,6 +103,9 @@ Para acessar a documentação, navegue até `https://localhost:7148/swagger/inde
    ```bash
    dotnet run
 
+## Credenciais do banco em nuvem
+user: admsql
+passsword: Mapped@2024
 
 ## Integrantes do Grupo
 - rm99977 - Alberto Seiji
