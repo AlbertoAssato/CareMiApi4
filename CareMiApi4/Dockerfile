@@ -7,14 +7,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 COPY . /src
 WORKDIR /src
 RUN ls
-RUN dotnet build "CareMiNet.csproj" -c Release -o /app/build
+RUN dotnet build "CareMiApi4.csproj" -c Release -o /app/build
 
 # Publicação da aplicação
 FROM build AS publish
-RUN dotnet publish "CareMiNet.csproj" -c Release -o /app/publish
+RUN dotnet publish "CareMiApi4.csproj" -c Release -o /app/publish
 
 # Configuração final para o runtime da aplicação
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CareMiNet.dll"]
+ENTRYPOINT ["dotnet", "CareMiApi4.ddl"]
