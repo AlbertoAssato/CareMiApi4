@@ -1,115 +1,99 @@
 {
-  "t_cm_usuario": {
-    "Create": {
-      "NmUsuario": "João Silva",
-      "DtNascimento": "1990-01-01",
-      "NrCpf": "12345678901",
-      "NrRg": "1234567",
-      "DsNacionalidade": "Brasileira",
-      "NrTelefone": "11987654321",
-      "DtCadastro": "2024-01-01",
-      "DsEstadoCivil": "SOLTEIRO",
-      "DsProfissao": "Engenheiro",
-      "FgAtivo": true
+    "insert": {
+        "usuarios": {
+            "NmUsuario": "Maria Oliveira",
+            "DtNascimento": "1985-06-15",
+            "NrCpf": "123.456.789-00",
+            "NrRg": "MG-12.345.678",
+            "DsNacionalidade": "Brasileira",
+            "NrTelefone": "(31) 98765-4321",
+            "DtCadastro": "GETDATE()",
+            "DsEstadoCivil": "CASADO",
+            "DsProfissao": "Enfermeira",
+            "FgAtivo": 1
+        },
+        "medicos": {
+            "NmMedico": "Dr. Carlos Silva",
+            "DsEspecializacao": "Cardiologia",
+            "DsCrm": "CRM12345",
+            "DsEmail": "carlos.silva@example.com",
+            "NrCelular": "11987654321"
+        },
+        "pacientes": {
+            "NmPaciente": "Ana Costa",
+            "NrPeso": 65,
+            "NrAltura": 1.6,
+            "NmGrupoSanguineo": "A+",
+            "FlSexoBiologico": "F",
+            "UsuarioCdUsuario": "(SELECT CdUsuario FROM t_cm_usuario WHERE NmUsuario = 'Maria Oliveira')"
+        },
+        "exames": {
+            "DtExame": "2024-11-02",
+            "DsExame": "Hemograma",
+            "AgendamentoExameId": "(SELECT CdAgendamento FROM t_cm_agendamento_exame WHERE DsNome = 'Ana Costa')"
+        },
+        "resultados_exame": {
+            "DsResultado": "Normal",
+            "DsObservacoes": "Nenhuma observa\u00e7\u00e3o",
+            "VrResultado": null,
+            "NrGlobulosVermelhos": 5.0,
+            "NrGlobulosBrancos": 7.0,
+            "NrPlaquetas": 150,
+            "NrHemoglobinaGlicada": 5.5,
+            "NrCreatinina": 1.0,
+            "NrColesterolTotal": 200,
+            "NrColesterolHDL": 50,
+            "NrColesterolLDL": 130,
+            "NrTriglicerides": 150,
+            "NrHorm\u00f4nioTireostimulanteTSH": 2.5,
+            "TExameCdExame": "(SELECT CdExame FROM t_cm_exame WHERE DsExame = 'Hemograma')"
+        }
     },
-    "Read": {
-      "CdUsuario": 1
+    "select": {
+        "usuarios": "SELECT * FROM t_cm_usuario",
+        "medicos": "SELECT * FROM t_cm_medico",
+        "pacientes": "SELECT * FROM t_cm_paciente",
+        "exames": "SELECT * FROM t_cm_exame",
+        "resultados_exame": "SELECT * FROM t_cm_resultado_exame"
     },
-    "Update": {
-      "CdUsuario": 1,
-      "NmUsuario": "João Silva",
-      "NrTelefone": "11912345678",
-      "FgAtivo": false
+    "update": {
+        "usuario": {
+            "set": {
+                "NmUsuario": "Maria Oliveira Silva",
+                "NrTelefone": "(31) 98888-8888"
+            },
+            "where": "NrCpf = '123.456.789-00'"
+        },
+        "medico": {
+            "set": {
+                "DsEmail": "carlos.silva.novo@example.com"
+            },
+            "where": "DsCrm = 'CRM12345'"
+        },
+        "paciente": {
+            "set": {
+                "NrPeso": 66
+            },
+            "where": "NmPaciente = 'Ana Costa'"
+        },
+        "exame": {
+            "set": {
+                "DsExame": "Hemograma Completo"
+            },
+            "where": "CdExame = (SELECT CdExame FROM t_cm_exame WHERE DsExame = 'Hemograma')"
+        },
+        "resultado_exame": {
+            "set": {
+                "DsResultado": "Leve aumento de gl\u00f3bulos vermelhos"
+            },
+            "where": "TExameCdExame = (SELECT CdExame FROM t_cm_exame WHERE DsExame = 'Hemograma')"
+        }
     },
-    "Delete": {
-      "CdUsuario": 1
+    "delete": {
+        "usuario": "DELETE FROM t_cm_usuario WHERE NrCpf = '123.456.789-00'",
+        "medico": "DELETE FROM t_cm_medico WHERE DsCrm = 'CRM12345'",
+        "paciente": "DELETE FROM t_cm_paciente WHERE NmPaciente = 'Ana Costa'",
+        "exame": "DELETE FROM t_cm_exame WHERE DsExame = 'Hemograma'",
+        "resultado_exame": "DELETE FROM t_cm_resultado_exame WHERE TExameCdExame = (SELECT CdExame FROM t_cm_exame WHERE DsExame = 'Hemograma')"
     }
-  },
-  "t_cm_medico": {
-    "Create": {
-      "NmMedico": "Dra. Maria Souza",
-      "DsEspecializacao": "Cardiologia",
-      "DsCrm": "123456-SP",
-      "DsEmail": "maria.souza@hospital.com",
-      "NrCelular": "11987654321"
-    },
-    "Read": {
-      "CdMedico": 1
-    },
-    "Update": {
-      "CdMedico": 1,
-      "NrCelular": "11912345678"
-    },
-    "Delete": {
-      "CdMedico": 1
-    }
-  },
-  "t_cm_paciente": {
-    "Create": {
-      "NmPaciente": "Carlos Alberto",
-      "NrPeso": 75.5,
-      "NrAltura": 1.78,
-      "NmGrupoSanguineo": "O+",
-      "FlSexoBiologico": "M",
-      "UsuarioCdUsuario": 1
-    },
-    "Read": {
-      "CdPaciente": 1
-    },
-    "Update": {
-      "CdPaciente": 1,
-      "NrPeso": 80.0,
-      "NrAltura": 1.80
-    },
-    "Delete": {
-      "CdPaciente": 1
-    }
-  },
-  "t_cm_exame": {
-    "Create": {
-      "DtExame": "2024-01-10",
-      "DsExame": "Exame de Sangue",
-      "AgendamentoExameId": 1
-    },
-    "Read": {
-      "CdExame": 1
-    },
-    "Update": {
-      "CdExame": 1,
-      "DtExame": "2024-01-12",
-      "DsExame": "Exame de Sangue - Atualizado"
-    },
-    "Delete": {
-      "CdExame": 1
-    }
-  },
-  "t_cm_resultado_exame": {
-    "Create": {
-      "DsResultado": "Normal",
-      "DsObservacoes": "Sem anomalias",
-      "VrResultado": 100.5,
-      "NrGlobulosVermelhos": 5,
-      "NrGlobulosBrancos": 7000,
-      "NrPlaquetas": 150000,
-      "NrHemoglobinaGlicada": 5,
-      "NrCreatinina": 1,
-      "NrColesterolTotal": 180,
-      "NrColesterolHDL": 60,
-      "NrColesterolLDL": 100,
-      "NrTriglicerides": 150,
-      "NrHormônioTireostimulanteTSH": 2,
-      "TExameCdExame": 1
-    },
-    "Read": {
-      "CdResultado": 1
-    },
-    "Update": {
-      "CdResultado": 1,
-      "DsObservacoes": "Leve alteração",
-      "VrResultado": 95.5
-    },
-    "Delete": {
-      "CdResultado": 1
-    }
-  }
 }
