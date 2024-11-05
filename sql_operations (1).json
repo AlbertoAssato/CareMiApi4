@@ -10,16 +10,16 @@ INSERT INTO t_cm_usuario (
     DsProfissao, 
     FgAtivo
 ) VALUES (
-    'João da Silva',         -- NmUsuario
-    '1990-01-15',            -- DtNascimento
-    '123.456.789-00',       -- NrCpf
-    'MG1234567',            -- NrRg
-    'Brasileira',           -- DsNacionalidade
-    '(31) 91234-5678',      -- NrTelefone
-    GETDATE(),              -- DtCadastro (data atual)
-    'SOLTEIRO',             -- DsEstadoCivil
-    'Engenheiro',           -- DsProfissao
-    1                       -- FgAtivo (1 para ativo, 0 para inativo)
+    'João da Silva',         
+    '1990-01-15',            
+    '123.456.789-00',       
+    'MG1234567',            
+    'Brasileira',           
+    '(31) 91234-5678',      
+    GETDATE(),              
+    'SOLTEIRO',            
+    'Engenheiro',           
+    1                       
 );
 SELECT * FROM t_cm_usuario;
 SELECT * FROM t_cm_usuario WHERE CdUsuario = 1;
@@ -41,12 +41,12 @@ INSERT INTO t_cm_paciente (
     FlSexoBiologico, 
     UsuarioCdUsuario
 ) VALUES (
-    'Maria Oliveira',      -- NmPaciente
-    65.50,                 -- NrPeso (em kg)
-    1.70,                  -- NrAltura (em metros)
-    'O+',                  -- NmGrupoSanguineo
-    'F',                   -- FlSexoBiologico ('F' para feminino, 'M' para masculino, 'I' para intersexo)
-    1                      -- UsuarioCdUsuario (id do usuário correspondente na tabela t_cm_usuario)
+    'Maria Oliveira',      
+    65.50,                
+    1.70,                 
+    'O+',                  
+    'F',                  
+    1                     
 );
 
 SELECT * FROM t_cm_paciente;
