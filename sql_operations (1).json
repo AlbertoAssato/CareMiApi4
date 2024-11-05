@@ -22,7 +22,6 @@ INSERT INTO t_cm_usuario (
     1                       
 );
 SELECT * FROM t_cm_usuario;
-SELECT * FROM t_cm_usuario WHERE CdUsuario = 1;
 
 UPDATE t_cm_usuario 
 SET NmUsuario = 'João da Silva Santos', 
@@ -50,7 +49,6 @@ INSERT INTO t_cm_paciente (
 );
 
 SELECT * FROM t_cm_paciente;
-SELECT * FROM t_cm_paciente WHERE CdPaciente = 1;
 
 UPDATE t_cm_paciente 
 SET NmPaciente = 'Maria Oliveira Santos', 
